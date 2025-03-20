@@ -9,6 +9,7 @@ public class Tulot implements Serializable {
     private double etuus;
     private double muuTulos;
     private boolean onkoTuloja;
+    private double muutosMaara;
 
     public Tulot(){
 
@@ -53,6 +54,14 @@ public class Tulot implements Serializable {
         return onkoTuloja;
     }
 
+    public double getMuutosMaara() {
+        return muutosMaara;
+    }
+
+    public void setMuutosMaara(double muutosMaara) {
+        this.muutosMaara = muutosMaara;
+    }
+
     public void lueTuloTiedostoon(Object tuloOlio){
         File fileStream= new File("Tulotiedot.dat");
               ObjectOutputStream olioTiedosto=null;
@@ -63,34 +72,38 @@ public class Tulot implements Serializable {
                   olioTiedosto.close();
               } catch (IOException | NumberFormatException error) {
                   Alert ioAlert=new Alert(Alert.AlertType.ERROR,"Nyt ei onnistunut!", ButtonType.CLOSE);
+                  ioAlert.showAndWait();
               }
 
 
     }
 
-    public Object olioTiedostonLuku(){
+    public void olioTiedostonLuku(){
         File tiedostonNimi=new File("Tulotiedot.dat");
-        Tulot lukuolio= null;
         if (!tiedostonNimi.exists()){
             Alert nullAlert=new Alert(Alert.AlertType.ERROR,"Tiedostoa ei ole!", ButtonType.CLOSE);
-            int i=0;
-            System.exit(i);
+            nullAlert.showAndWait();
+            System.exit(0);
         }
         else{
             try{
-                boolean tiedostoLoppui=false;
                 FileInputStream tiedostoTulo=new FileInputStream(tiedostonNimi);
                 ObjectInputStream luetaanTulo=new ObjectInputStream(tiedostoTulo);
-                while(!tiedostoLoppui){
-                    lukuolio= (Tulot) luetaanTulo.readObject();
+                Object luettu =luetaanTulo.readObject();
+                if(luettu instanceof Tulot) {
+                    Tulot olio=(Tulot)luettu;
+                    this.muutosMaara =olio.getAnsio()+olio.getEtuus()+olio.getMuuTulos();
                 }
-                luetaanTulo.close();
+                else{
+                    Alert catcherAlert=new Alert(Alert.AlertType.ERROR,"Tiedosto ei ole double!", ButtonType.CLOSE);
+                    catcherAlert.showAndWait();
+                    return;
+                    }
             } catch (IOException | ClassNotFoundException e) {
-                Alert catcherAlert=new Alert(Alert.AlertType.ERROR,"Tiedostoa ei ole!", ButtonType.CLOSE);
+                Alert catcherAlert=new Alert(Alert.AlertType.ERROR,"Ei onnistunut", ButtonType.CLOSE);
+                catcherAlert.showAndWait();
             }
-
         }
-        return lukuolio;
     }
 
 }

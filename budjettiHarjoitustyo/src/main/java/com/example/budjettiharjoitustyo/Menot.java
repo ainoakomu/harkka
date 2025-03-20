@@ -9,6 +9,7 @@ public class Menot implements Serializable {
     private double ruoka;
     private double muuMeno;
     private boolean onkoMenoja;
+    private double muutosMaara;
 
     public Menot(){
 
@@ -54,40 +55,52 @@ public class Menot implements Serializable {
         this.onkoMenoja = onkoMenoja;
     }
 
+    public double getMuutosMaara() {
+        return muutosMaara;
+    }
+
+    public void setMuutosMaara(double muutosMaara) {
+        this.muutosMaara = muutosMaara;
+    }
+
     public void lueMenoTiedostoon(Object menoOlio){
         File fileStreamMeno = new File("Menotiedot.dat");
         ObjectOutputStream olioTiedostoMeno =null;
-
         try{
             olioTiedostoMeno =new ObjectOutputStream(new FileOutputStream(fileStreamMeno));
             olioTiedostoMeno.writeObject(menoOlio);
             olioTiedostoMeno.close();
         } catch (IOException | NumberFormatException error) {
             Alert ioAlert=new Alert(Alert.AlertType.ERROR,"Nyt ei onnistunut!", ButtonType.CLOSE);
+            ioAlert.showAndWait();
         }
     }
 
-    public Object menoOlioTiedostonLuku() {
+    public void menoOlioTiedostonLuku() {
         File tiedostonNimi = new File("Menotiedot.dat");
-        Menot lukuolio = null;
         if (!tiedostonNimi.exists()) {
             Alert nullAlert = new Alert(Alert.AlertType.ERROR, "Tiedostoa ei ole!", ButtonType.CLOSE);
-            int i = 0;
-            System.exit(i);
+            nullAlert.showAndWait();
+            System.exit(0);
         } else {
             try {
-                boolean tiedostoLoppui = false;
                 FileInputStream tiedostoMeno = new FileInputStream(tiedostonNimi);
                 ObjectInputStream luetaanMeno = new ObjectInputStream(tiedostoMeno);
-                while (!tiedostoLoppui) {
-                    lukuolio = (Menot) luetaanMeno.readObject();
+                Object luettu=luetaanMeno.readObject();
+                if(luettu instanceof Menot){
+                    Menot olio= (Menot) luettu;
+                    this.muutosMaara=olio.getVuokra()+olio.getRuoka()+olio.getMuuMeno();
                 }
-                luetaanMeno.close();
+                else{
+                    Alert catcherAlert = new Alert(Alert.AlertType.ERROR, "Tiedosto ei ole double!", ButtonType.CLOSE);
+                    catcherAlert.showAndWait();
+                    return;
+                }
             } catch (IOException | ClassNotFoundException e) {
                 Alert catcherAlert = new Alert(Alert.AlertType.ERROR, "Ei Onnistunut!", ButtonType.CLOSE);
+                catcherAlert.showAndWait();
             }
         }
-        return lukuolio;
     }
 
 }

@@ -88,8 +88,10 @@ public class KuukaudenBudjetti extends Application {
                 luettuVuokra = Double.parseDouble(String.valueOf(taytaVuokra.getText()));
                 luettuRuoka = Double.parseDouble(String.valueOf(taytaRuoka.getText()));
                 luettuMuuMeno = Double.parseDouble(String.valueOf(taytaMuutMenot.getText()));
-            } catch (NullPointerException error) {
+            } catch (NumberFormatException error) {
                 Alert nullAlert=new Alert(Alert.AlertType.WARNING,"Kirjoita tulot muodossa 0.0", ButtonType.CLOSE);
+                nullAlert.showAndWait();
+                return;
             }
 
             //tulo-olio
@@ -97,7 +99,9 @@ public class KuukaudenBudjetti extends Application {
 
             if ((ansioOlio.getAnsio() == 0) && (ansioOlio.getEtuus() == 0) && (ansioOlio.getMuuTulos() == 0)) {
                 Alert isTuloAlert=new Alert(Alert.AlertType.WARNING,"Sinulla ei ole tuloja, täytä tulot!", ButtonType.CLOSE);
+                isTuloAlert.showAndWait();
                 ansioOlio.setOnkoTuloja(false);
+                return;
             } else {
                 ansioOlio.setOnkoTuloja(true);
                 ansioOlio.lueTuloTiedostoon(ansioOlio);
@@ -108,6 +112,8 @@ public class KuukaudenBudjetti extends Application {
             if ((menoOlio.getVuokra() == 0) && (menoOlio.getRuoka() == 0) && (menoOlio.getMuuMeno() == 0)) {
                 menoOlio.setOnkoMenoja(false);
                 Alert isMenoAlert=new Alert(Alert.AlertType.WARNING,"Sinulla ei ole meonoja, täytä menot!", ButtonType.CLOSE);
+                isMenoAlert.showAndWait();
+                return;
             } else {
                 menoOlio.setOnkoMenoja(true);
                 menoOlio.lueMenoTiedostoon(menoOlio);
