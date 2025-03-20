@@ -1,0 +1,11 @@
+.root {
+-fx-background-color: lightblue;
+}
+.button{
+-fx-background-color: plum;
+}
+.label{
+-fx-background-color: salmon;
+-fx-text-fill: navy;
+-fx-font-style: italic;
+}
