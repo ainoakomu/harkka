@@ -4,17 +4,44 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import java.io.*;
 
+/**
+ * Kasittelee menojen rahamaaria, seka meno-olion tiedostoon kirjoitusta ja tiedostosta lukemista
+ */
 public class Menot implements Serializable {
+    /**
+     * kasiteltava vuokran rahamaara desimaaleina
+     */
     private double vuokra;
+    /**
+     * kasiteltava ruuan rahamaara desimaaleina
+     */
     private double ruoka;
+    /**
+     * kasiteltava muiden menojen rahamaara desimaaleina
+     */
     private double muuMeno;
+    /**
+     * kasiteltavien menojen olemassaolo
+     */
     private boolean onkoMenoja;
+    /**
+     * kasiteltavien menojen yhteenlaskettu arvo desimaalilukuina
+     */
     private double muutosMaara;
 
+    /**
+     * luokan parametriton alustaja
+     */
     public Menot(){
 
     }
 
+    /**
+     * alustaja, jolla on kolme menojen kenttaa
+     * @param vuokra vuokran maara desimaalilukuina
+     * @param ruoka ruokaan meneva rahamaara desimaaleina
+     * @param muutMeno muihin menoihin meneva rahamaara desimaaleina
+     */
     public Menot(double vuokra, double ruoka,double muutMeno){
         this.vuokra=vuokra;
         this.ruoka=ruoka;
@@ -22,47 +49,91 @@ public class Menot implements Serializable {
 
     }
 
-
+    /**
+     * palauttaa vuokran maaran desimaaleina
+     * @return vuokran desimaaliluku
+     */
     public double getVuokra() {
         return vuokra;
     }
 
+    /**
+     * asettaa vuokran maaran
+     * @param vuokra annettu desimaaliluku vuokralle
+     */
     public void setVuokra(int vuokra) {
         this.vuokra = vuokra;
     }
 
+    /**
+     * palauttaa ruokaan menevan rahamaaran desimaaleina
+     * @return rahasumma desimaaleina
+     */
     public double getRuoka() {
         return ruoka;
     }
 
+    /**
+     * asettaa ruokaan menevan rahamaaran desimaaleina
+     * @param ruoka annettu summa desimaaleina
+     */
     public void setRuoka(double ruoka) {
         this.ruoka = ruoka;
     }
 
+    /**
+     * palauttaa muihuin menoihin menevan rahasumman desimaaleina
+     * @return summan desimaalilukuna
+     */
     public double getMuuMeno() {
         return muuMeno;
     }
 
+    /**
+     * asettaa muihin menoihin menevan rahasumman desimaaleina
+     * @param muuMeno annettu summa muihim menoihin desimaaleina
+     */
     public void setMuuMeno(double muuMeno) {
         this.muuMeno = muuMeno;
     }
 
+    /**
+     * palauttaa menojen olemassaolon
+     * @return totuusarvo onko menoja
+     */
     public boolean getOnkoMenoja() {
         return onkoMenoja;
     }
 
+    /**
+     * asettaa menojen olemassaoloarvon
+     * @param onkoMenoja annettu totuusarvo menoista
+     */
     public void setOnkoMenoja(boolean onkoMenoja) {
         this.onkoMenoja = onkoMenoja;
     }
 
+    /**
+     * palauttaa yhteenlaskettujen menojen maaran desimaaleina
+     * @return summa menoista desimaaleina
+     */
     public double getMuutosMaara() {
         return muutosMaara;
     }
 
+    /**
+     * asettaa yhteenlaskettujen menojen maaran desimaaleina
+     * @param muutosMaara annettu desimaaliluku
+     */
     public void setMuutosMaara(double muutosMaara) {
         this.muutosMaara = muutosMaara;
     }
 
+    /**
+     * kirjoitetaan Menot-luokan olion tietueet binaaritiedostoon.
+     * virhetilanteessa kaytetaan pop-up ikkunoita
+     * @param menoOlio olio jonka tiedot halutaan kirjoittaa
+     */
     public void lueMenoTiedostoon(Object menoOlio){
         File fileStreamMeno = new File("Menotiedot.dat");
         ObjectOutputStream olioTiedostoMeno =null;
@@ -76,6 +147,10 @@ public class Menot implements Serializable {
         }
     }
 
+    /**
+     * luetaan tiedostosta Menot-luokan olion tietoja ja lasketaan menojen maara muutosMaaraan.
+     * virhetilanteissa tulee pop-up ikkuna
+     */
     public void menoOlioTiedostonLuku() {
         File tiedostonNimi = new File("Menotiedot.dat");
         if (!tiedostonNimi.exists()) {
@@ -92,12 +167,12 @@ public class Menot implements Serializable {
                     this.muutosMaara=olio.getVuokra()+olio.getRuoka()+olio.getMuuMeno();
                 }
                 else{
-                    Alert catcherAlert = new Alert(Alert.AlertType.ERROR, "Tiedosto ei ole double!", ButtonType.CLOSE);
+                    Alert catcherAlert = new Alert(Alert.AlertType.ERROR, "Tiedosto ei ole oikea!", ButtonType.CLOSE);
                     catcherAlert.showAndWait();
                     return;
                 }
             } catch (IOException | ClassNotFoundException e) {
-                Alert catcherAlert = new Alert(Alert.AlertType.ERROR, "Ei Onnistunut!", ButtonType.CLOSE);
+                Alert catcherAlert = new Alert(Alert.AlertType.ERROR, "Ei onnistunut!", ButtonType.CLOSE);
                 catcherAlert.showAndWait();
             }
         }
