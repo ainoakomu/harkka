@@ -67,7 +67,12 @@ public class VaihdaNakuma extends Application {
     public void muutaTuloKokoa(Circle ympyra){
         Tulot alkuOlio=new Tulot();
         alkuOlio.olioTiedostonLuku();
-        ympyra.setRadius(ympyra.getRadius()+alkuOlio.getMuutosMaara()/100);
+        if (alkuOlio.getMuutosMaara()>=1000){
+            ympyra.setRadius(ympyra.getRadius()+alkuOlio.getMuutosMaara()/100);
+        }
+        if (alkuOlio.getMuutosMaara()<1000){
+            ympyra.setRadius(ympyra.getRadius()+alkuOlio.getMuutosMaara());
+        }
     }
 
     /**
@@ -77,7 +82,12 @@ public class VaihdaNakuma extends Application {
     public void muutaMenoKokoa(Circle ympyra){
         Menot alkuOlio=new Menot();
         alkuOlio.menoOlioTiedostonLuku();
-        ympyra.setRadius(ympyra.getRadius()+alkuOlio.getMuutosMaara()/100);
+        if (alkuOlio.getMuutosMaara()>=1000){
+            ympyra.setRadius(ympyra.getRadius()+alkuOlio.getMuutosMaara()/100);
+        }
+        if (alkuOlio.getMuutosMaara()<1000){
+            ympyra.setRadius(ympyra.getRadius()+alkuOlio.getMuutosMaara());
+        }
     }
 
     /**
@@ -106,43 +116,55 @@ public class VaihdaNakuma extends Application {
 
         //tuloiden ilmaisemiseen luodot nodet ja tyylittely
         Circle ansioYmpyra=new Circle(40);
+        ansioYmpyra.maxHeight(120);
+        ansioYmpyra.maxWidth(120);
         Label ansiolb=new Label("Ansiot");
         ansioYmpyraPaneeli.getChildren().addAll(ansioYmpyra,ansiolb);
         ansioYmpyra.setFill(Color.AQUAMARINE);
         Circle etuusYmypyra=new Circle(40);
+        etuusYmypyra.maxWidth(120);
+        etuusYmypyra.maxHeight(120);
         Label etuuslb=new Label("Etuudet");
         etuusYmpyraPaneeli.getChildren().addAll(etuusYmypyra,etuuslb);
-        etuusYmypyra.setFill(Color.AZURE);
+        etuusYmypyra.setFill(Color.CADETBLUE);
         Circle muuTuloYmpyra=new Circle(40);
+        muuTuloYmpyra.maxHeight(120);
+        muuTuloYmpyra.maxHeight(120);
         Label muuTulolb=new Label("Muut tulot");
         tuloYmpyraPaneeli.getChildren().addAll(muuTuloYmpyra,muuTulolb);
         muuTuloYmpyra.setFill(Color.AQUA);
         //laitetaan tulot-ympyroiden stackpanet vertikaalisti seka asettelu
         VBox tuloLaatikko=new VBox();
-        tuloLaatikko.getChildren().addAll(ansioYmpyraPaneeli,etuusYmpyraPaneeli,tuloYmpyraPaneeli);
+        tuloLaatikko.getChildren().addAll(ansioYmpyraPaneeli,etuusYmpyraPaneeli,muuTuloYmpyra);
         tuloLaatikko.setAlignment(Pos.BOTTOM_RIGHT);
         tuloLaatikko.setSpacing(10);
 
         //tehdaan menot ympyroille omat stackpaneelit
-        StackPane vuokraYmpyraPaneeli =new StackPane();
+        /**StackPane vuokraYmpyraPaneeli =new StackPane();
         StackPane ruokaYmpyraPaneeli=new StackPane();
-        StackPane menoYmpyraPaneeli=new StackPane();
+        StackPane menoYmpyraPaneeli=new StackPane();*/
         //luodaan menot ympyroita, asetellaan ja lisataan stackpaneeleihin
         Circle vuokraYmpyra=new Circle(40);
-        Label vuokralb=new Label("Vuokra");
+        vuokraYmpyra.maxHeight(120);
+        vuokraYmpyra.maxWidth(120);
+        Label vuokralb=new Label("Vuokra",vuokraYmpyra);
         vuokraYmpyra.setFill(Color.FUCHSIA);
-        vuokraYmpyraPaneeli.getChildren().addAll(vuokraYmpyra,vuokralb);
+        //vuokraYmpyraPaneeli.getChildren().addAll(vuokraYmpyra,vuokralb);
         Circle ruokaYmpyra=new Circle(40);
-        Label ruokalb=new Label("Ruoka");
+        ruokaYmpyra.maxHeight(120);
+        ruokaYmpyra.maxWidth(120);
+        Label ruokalb=new Label("Ruoka",ruokaYmpyra);
         ruokaYmpyra.setFill(Color.FIREBRICK);
-        ruokaYmpyraPaneeli.getChildren().addAll(ruokaYmpyra,ruokalb);
+        //ruokaYmpyraPaneeli.getChildren().addAll(ruokaYmpyra,ruokalb);
         Circle muuMenoYmpyra=new Circle(40);
-        Label menolb=new Label("Muut menot");
+        muuMenoYmpyra.maxHeight(120);
+        muuMenoYmpyra.maxWidth(120);
+        Label menolb=new Label("Muut menot",muuMenoYmpyra);
         muuMenoYmpyra.setFill(Color.RED);
-        menoYmpyraPaneeli.getChildren().addAll(muuMenoYmpyra,menolb);
+        //menoYmpyraPaneeli.getChildren().addAll(muuMenoYmpyra,menolb);
         //asetetaan stackpaneelit vertikaaliboksiin
         VBox menoLaatikko=new VBox();
-        menoLaatikko.getChildren().addAll(vuokraYmpyraPaneeli,ruokaYmpyraPaneeli,menoYmpyraPaneeli);
+        menoLaatikko.getChildren().addAll(vuokralb,ruokalb,menolb);
         menoLaatikko.setAlignment(Pos.BOTTOM_LEFT);
         menoLaatikko.setSpacing(10);
         //asetetaan verticalboksit rootpaneeliin

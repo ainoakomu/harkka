@@ -38,7 +38,7 @@ public class TestiNakyma extends Application {
         Circle etuusYmypyra=new Circle(40);
         Label etuuslb=new Label("Etuudet");
         etuusYmpyraPaneeli.getChildren().addAll(etuusYmypyra,etuuslb);
-        etuusYmypyra.setFill(Color.AZURE);
+        etuusYmypyra.setFill(Color.CADETBLUE);
         Circle muuTuloYmpyra=new Circle(40);
         Label muuTulolb=new Label("Muut tulot");
         tuloYmpyraPaneeli.getChildren().addAll(muuTuloYmpyra,muuTulolb);
@@ -80,6 +80,7 @@ public class TestiNakyma extends Application {
         primaryStage.setScene(ruutu2);
         ruutu2.getStylesheets().add(getClass().getResource("/budjettistyle.css").toExternalForm());
         primaryStage.setTitle("Täytä budjetti");
+
         primaryStage.show();
 
     }
