@@ -210,7 +210,7 @@ public class KuukaudenBudjetti extends Application {
                 menoOlio.lueMenoTiedostoon(menoOlio);
             }
             //luodaan nakyman vaihdon olio, annetaan nykyisen ikkunan tiedot
-            VaihdaNakuma olio = new VaihdaNakuma(primaryStage, ruutu, root);
+            KuukaudenJakauma olio = new KuukaudenJakauma(primaryStage, ruutu, root);
             olio.vaihda(olio.uusiNakyma());
         });
         //naytetaan ikkuna

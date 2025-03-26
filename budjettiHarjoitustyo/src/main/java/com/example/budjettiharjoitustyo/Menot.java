@@ -27,7 +27,7 @@ public class Menot implements Serializable {
     /**
      * kasiteltavien menojen yhteenlaskettu arvo desimaalilukuina
      */
-    private double muutosMaara;
+    private double menoMuutosMaara;
 
     /**
      * luokan parametriton alustaja
@@ -117,16 +117,16 @@ public class Menot implements Serializable {
      * palauttaa yhteenlaskettujen menojen maaran desimaaleina
      * @return summa menoista desimaaleina
      */
-    public double getMuutosMaara() {
-        return muutosMaara;
+    public double getMenoMuutosMaara() {
+        return menoMuutosMaara;
     }
 
     /**
      * asettaa yhteenlaskettujen menojen maaran desimaaleina
-     * @param muutosMaara annettu desimaaliluku
+     * @param menoMuutosMaara annettu desimaaliluku
      */
-    public void setMuutosMaara(double muutosMaara) {
-        this.muutosMaara = muutosMaara;
+    public void setMenoMuutosMaara(double menoMuutosMaara) {
+        this.menoMuutosMaara = menoMuutosMaara;
     }
 
     /**
@@ -164,7 +164,10 @@ public class Menot implements Serializable {
                 Object luettu=luetaanMeno.readObject();
                 if(luettu instanceof Menot){
                     Menot olio= (Menot) luettu;
-                    this.muutosMaara=olio.getVuokra()+olio.getRuoka()+olio.getMuuMeno();
+                    this.vuokra = olio.getVuokra();
+                    this.ruoka = olio.getRuoka();
+                    this.muuMeno = olio.getMuuMeno();
+                    this.menoMuutosMaara = vuokra + ruoka + muuMeno;
                 }
                 else{
                     Alert catcherAlert = new Alert(Alert.AlertType.ERROR, "Tiedosto ei ole oikea!", ButtonType.CLOSE);

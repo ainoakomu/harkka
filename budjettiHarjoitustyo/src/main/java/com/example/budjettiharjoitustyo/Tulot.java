@@ -166,10 +166,13 @@ public class Tulot implements Serializable {
                 Object luettu =luetaanTulo.readObject();
                 if(luettu instanceof Tulot) {
                     Tulot olio=(Tulot)luettu;
-                    this.muutosMaara =olio.getAnsio()+olio.getEtuus()+olio.getMuuTulos();
+                     this.ansio = olio.getAnsio();
+                     this.etuus = olio.getEtuus();
+                    this.muuTulos = olio.getMuuTulos();
+                    this.muutosMaara = ansio + etuus + muuTulos;
                 }
                 else{
-                    Alert catcherAlert=new Alert(Alert.AlertType.ERROR,"Tiedosto ei ole double!", ButtonType.CLOSE);
+                    Alert catcherAlert=new Alert(Alert.AlertType.ERROR,"Tiedosto ei ole oikea!", ButtonType.CLOSE);
                     catcherAlert.showAndWait();
                     return;
                     }
@@ -179,5 +182,6 @@ public class Tulot implements Serializable {
             }
         }
     }
+
 
 }
