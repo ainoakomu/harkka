@@ -34,33 +34,113 @@ public class KuukaudenJakauma extends Application {
      * luokalle kaytettavissa oleva parent-ilmentyma
      */
     private Parent root;
-
+    /**
+     * graafisen nakyman paateksti
+     */
     private  final Label paaTeksti=new Label("Kuukauden budjettisi:");
+    /**
+     * graafisen nakuman tulojen labeli
+     */
     private  final Label Tulot=new Label("Tulosi ovat:");
+    /**
+     * graafisen nakuman menojen labeli
+     */
     private  final Label Menot=new Label("Menosi ovat:");
+    /**
+     * kaikki kerrotut tulot tekstina
+     */
     private  final Text kaikkiTulot=new Text();
+    /**
+     * kaikki kerrotut menot tekstina
+     */
     private  final Text kaikkiMenot=new Text();
+    /**
+     * graafinen ympyra ansiolle
+     */
     private  final Circle ansioYmpyra=new Circle(40);
+    /**
+     * ansion oma labeli
+     */
     private  final Label ansiolb=new Label("Ansiot");
+    /**
+     * ansion oma stackpane
+     */
     private  final StackPane ansioStackPane=new StackPane();
+    /**
+     * etuuden oma stackpane
+     */
     private  final StackPane etuusStackPane=new StackPane();
+    /**
+     * etuuden ympyra esiintyma
+     */
     private  final Circle etuusYmypyra=new Circle(40);
+    /**
+     * etuuden ilmaisun label
+     */
     private  final Label etuuslb=new Label("Etuudet");
+    /**
+     * stackpane muille tuloille
+     */
     private  final StackPane muutTulotStackPane=new StackPane();
+    /**
+     * muiden tuloje ympyra
+     */
     private  final Circle muuTuloYmpyra=new Circle(40);
+    /**
+     * muiden tulojen label
+     */
     private  final Label muuTulolb=new Label("Muut tulot");
+    /**
+     * vuokran stackpane
+     */
     private  final StackPane vuokraStackPane=new StackPane();
+    /**
+     * vuokralle ympyra
+     */
     private  final Circle vuokraYmpyra=new Circle(40);
+    /**
+     * vuokran ilmaisun label
+     */
     private  final Label vuokralb=new Label("Vuokra");
+    /**
+     * ruokakulujen stackpane
+     */
     private  final StackPane ruokaStackPane=new StackPane();
+    /**
+     * ruokakulujen ympyra
+     */
     private  final Circle ruokaYmpyra=new Circle(40);
+    /**
+     * ruokakulujen label
+     */
     private  final Label ruokalb=new Label("Ruokakulut");
+    /**
+     * muiden menojen stackpane
+     */
     private  final StackPane muuMenoStackPane=new StackPane();
+    /**
+     * muiden menojen ympyra
+     */
     private  final Circle muuMenoYmpyra=new Circle(40);
+    /**
+     * menojen ilmaisun label
+     */
     private  final Label menolb=new Label("Muut menot");
+    /**
+     * menoympyroiden oma Node
+     */
     private  final VBox menoLaatikko=new VBox();
+    /**
+     * tuloympyroiden oma Node
+     */
     private  final VBox tuloLaatikko=new VBox();
+    /**
+     * tulojen ja menojen ilmaisun Node
+     */
     private  final HBox ylalaatikko=new HBox();
+    /**
+     * rahamaaran jakauman ilmaisun tekstikentta
+     */
     private final Text jakaumaTeksti=new Text();
 
 
@@ -91,6 +171,10 @@ public class KuukaudenJakauma extends Application {
         this.root=root;
     }
 
+    /**
+     * palauttaa lasketun tulon summan merkkijonona
+     * @return tulon summa merkkijonona seka euron merkki
+     */
     public String palautaTuloSumma(){
        Tulot alkuolio=new Tulot();
        alkuolio.olioTiedostonLuku();
@@ -100,6 +184,10 @@ public class KuukaudenJakauma extends Application {
        return lukujono+euro;
    }
 
+    /**
+     * palauttaa menojen summan merkkijonona
+     * @return menojen summa merkkijonona seka euron merkki
+     */
     public String palautaMenoSumma(){
         Menot alkuolio=new Menot();
         alkuolio.menoOlioTiedostonLuku();
@@ -108,6 +196,11 @@ public class KuukaudenJakauma extends Application {
         String euro="€";
         return lukujono+euro;
     }
+
+    /**
+     * palauttaa luetun olion ansion merkkijonona
+     * @return olion ansio merkkijonona seka euron merkki
+     */
     public String palautaAnsio(){
         Tulot testiOlio=new Tulot();
         testiOlio.olioTiedostonLuku();
@@ -116,6 +209,11 @@ public class KuukaudenJakauma extends Application {
         String euro="€";
         return ansioLukuJono+euro;
     }
+
+    /**
+     * palauttaa luetun olion etuuden merkkijonona
+     * @return luetun olion etuuden merkkijonona seka euron merkki
+     */
     public String palautaEtuus(){
         Tulot testiOlio=new Tulot();
         testiOlio.olioTiedostonLuku();
@@ -124,6 +222,11 @@ public class KuukaudenJakauma extends Application {
         String euro="€";
         return ansioLukuJono+euro;
     }
+
+    /**
+     * palauttaa luetun olion muut tulot merkkijonona
+     * @return luetun olion muut tulot merkkijonona seka euron merkki
+     */
     public String palautaMuuTulo(){
         Tulot testiOlio=new Tulot();
         testiOlio.olioTiedostonLuku();
@@ -132,6 +235,11 @@ public class KuukaudenJakauma extends Application {
         String euro="€";
         return ansioLukuJono+euro;
     }
+
+    /**
+     * palauttaa luetun olion vuokran merkkijonona
+     * @return luetun olion vuokran merkkijonona seka euron merkki
+     */
     public String palautaVuokra(){
         Menot testiOlio=new Menot();
         testiOlio.menoOlioTiedostonLuku();
@@ -140,6 +248,11 @@ public class KuukaudenJakauma extends Application {
         String euro="€";
         return ansioLukuJono+euro;
     }
+
+    /**
+     * palauttaa luetun olon ruokakulut merkkijonona
+     * @return luetun olion ruokakulut merkkijonona seka euron merkki
+     */
     public String palautaRuoka(){
         Menot testiOlio=new Menot();
         testiOlio.menoOlioTiedostonLuku();
@@ -148,6 +261,11 @@ public class KuukaudenJakauma extends Application {
         String euro="€";
         return ansioLukuJono+euro;
     }
+
+    /**
+     * palauttaa luetun olion muut menot merkkijonona
+     * @return luetun olion muut menot merkkijonona seka euron merkki
+     */
     public String palautaMuuMeno(){
         Menot testiOlio=new Menot();
         testiOlio.menoOlioTiedostonLuku();
@@ -156,6 +274,11 @@ public class KuukaudenJakauma extends Application {
         String euro="€";
         return ansioLukuJono+euro;
     }
+
+    /**
+     * palauttaa luettujen olion yhteisrahasummista palautteen, jossa budjetti on joko yli-tai alijaamainen tai tasan
+     * @return merkkijonon, riippuen tilin balanssin jakaumasta
+     */
     public String rahaJakauma(){
         Tulot tuloOlio=new Tulot();
         Menot menoOlio=new Menot();
@@ -200,7 +323,7 @@ public class KuukaudenJakauma extends Application {
     }
 
     /**
-     * luodaan uusi graafinen nakyma, jossa budjetin jakauma.
+     * luodaan uusi graafinen nakyma, jossa budjetin jakauma graafisesti
      * Kaytetaan samaa css-style sheetia kuin muissa luokissa
      *
      * @return uusi graafinen nakyma budjetin ilmaisemiseen

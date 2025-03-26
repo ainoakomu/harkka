@@ -127,7 +127,7 @@ public class KuukaudenBudjetti extends Application {
 
         //kaytetaan tehtya stylesheet tyylia
         ruutu.getStylesheets().add(getClass().getResource("/budjettistyle.css").toExternalForm());
-        primaryStage.setTitle("Täytä budjetti");
+        primaryStage.setTitle("Täytä budjetti muodossa 0.0");
 
         //asetellaan textfieldit ja labelit halutusti
         taytaAnsio.setMaxWidth(60);
