@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.example.budjettiharjoitustyo","l":"KuukaudenBudjetti"},{"p":"com.example.budjettiharjoitustyo","l":"KuukaudenJakauma"},{"p":"com.example.budjettiharjoitustyo","l":"Menot"},{"p":"com.example.budjettiharjoitustyo","l":"Tulot"}];updateSearchResults();
