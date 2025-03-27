@@ -114,6 +114,13 @@ public class KuukaudenBudjetti extends Application {
     }
 
     /**
+     * Luokan parametriton alustaja
+     */
+    public KuukaudenBudjetti(){
+
+    }
+
+    /**
      * grafiikan aloitus, jossa luodaan aloitusnakyma
      *
      * @param primaryStage grafiikan kayttama stage

@@ -35,6 +35,38 @@ public class KuukaudenJakauma extends Application {
      */
     private Parent root;
     /**
+     * kaikki kerrotut tulot tekstina
+     */
+    private  final Text kaikkiTulot=new Text();
+    /**
+     * kaikki kerrotut menot tekstina
+     */
+    private  final Text kaikkiMenot=new Text();
+    /**
+     * etuuden ympyra esiintyma
+     */
+    private  final Circle etuusYmypyra=new Circle(40);
+    /**
+     * graafinen ympyra ansiolle
+     */
+    private  final Circle ansioYmpyra=new Circle(40);
+    /**
+     * muiden menojen ympyra
+     */
+    private  final Circle muuMenoYmpyra=new Circle(40);
+    /**
+     * muiden tuloje ympyra
+     */
+    private  final Circle muuTuloYmpyra=new Circle(40);
+    /**
+     * vuokralle ympyra
+     */
+    private  final Circle vuokraYmpyra=new Circle(40);
+    /**
+     * ruokakulujen ympyra
+     */
+    private  final Circle ruokaYmpyra=new Circle(40);
+    /**
      * graafisen nakyman paateksti
      */
     private  final Label paaTeksti=new Label("Kuukauden budjettisi:");
@@ -47,21 +79,47 @@ public class KuukaudenJakauma extends Application {
      */
     private  final Label Menot=new Label("Menosi ovat:");
     /**
-     * kaikki kerrotut tulot tekstina
+     * etuuden ilmaisun label
      */
-    private  final Text kaikkiTulot=new Text();
-    /**
-     * kaikki kerrotut menot tekstina
-     */
-    private  final Text kaikkiMenot=new Text();
-    /**
-     * graafinen ympyra ansiolle
-     */
-    private  final Circle ansioYmpyra=new Circle(40);
+    private  final Label etuuslb=new Label("Etuudet");
     /**
      * ansion oma labeli
      */
     private  final Label ansiolb=new Label("Ansiot");
+
+    /**
+     * muiden tulojen label
+     */
+    private  final Label muuTulolb=new Label("Muut tulot");
+    /**
+     * menojen ilmaisun label
+     */
+    private  final Label menolb=new Label("Muut menot");
+
+    /**
+     * vuokran ilmaisun label
+     */
+    private  final Label vuokralb=new Label("Vuokra");
+    /**
+     * ruokakulujen label
+     */
+    private  final Label ruokalb=new Label("Ruokakulut");
+    /**
+     * ruokakulujen stackpane
+     */
+    private  final StackPane ruokaStackPane=new StackPane();
+    /**
+     * muiden menojen stackpane
+     */
+    private  final StackPane muuMenoStackPane=new StackPane();
+    /**
+     * vuokran stackpane
+     */
+    private  final StackPane vuokraStackPane=new StackPane();
+    /**
+     * stackpane muille tuloille
+     */
+    private  final StackPane muutTulotStackPane=new StackPane();
     /**
      * ansion oma stackpane
      */
@@ -70,62 +128,6 @@ public class KuukaudenJakauma extends Application {
      * etuuden oma stackpane
      */
     private  final StackPane etuusStackPane=new StackPane();
-    /**
-     * etuuden ympyra esiintyma
-     */
-    private  final Circle etuusYmypyra=new Circle(40);
-    /**
-     * etuuden ilmaisun label
-     */
-    private  final Label etuuslb=new Label("Etuudet");
-    /**
-     * stackpane muille tuloille
-     */
-    private  final StackPane muutTulotStackPane=new StackPane();
-    /**
-     * muiden tuloje ympyra
-     */
-    private  final Circle muuTuloYmpyra=new Circle(40);
-    /**
-     * muiden tulojen label
-     */
-    private  final Label muuTulolb=new Label("Muut tulot");
-    /**
-     * vuokran stackpane
-     */
-    private  final StackPane vuokraStackPane=new StackPane();
-    /**
-     * vuokralle ympyra
-     */
-    private  final Circle vuokraYmpyra=new Circle(40);
-    /**
-     * vuokran ilmaisun label
-     */
-    private  final Label vuokralb=new Label("Vuokra");
-    /**
-     * ruokakulujen stackpane
-     */
-    private  final StackPane ruokaStackPane=new StackPane();
-    /**
-     * ruokakulujen ympyra
-     */
-    private  final Circle ruokaYmpyra=new Circle(40);
-    /**
-     * ruokakulujen label
-     */
-    private  final Label ruokalb=new Label("Ruokakulut");
-    /**
-     * muiden menojen stackpane
-     */
-    private  final StackPane muuMenoStackPane=new StackPane();
-    /**
-     * muiden menojen ympyra
-     */
-    private  final Circle muuMenoYmpyra=new Circle(40);
-    /**
-     * menojen ilmaisun label
-     */
-    private  final Label menolb=new Label("Muut menot");
     /**
      * menoympyroiden oma Node
      */
@@ -344,7 +346,7 @@ public class KuukaudenJakauma extends Application {
 
         //ansio ympyra
         ansioYmpyra.setFill(Color.AQUAMARINE);
-        //stackpane toiminta
+        //stackpane ja asettelu
         Text ansioTeksti=new Text(palautaAnsio());
         ansioStackPane.getChildren().addAll(ansioYmpyra,ansioTeksti,ansiolb);
         StackPane.setAlignment(ansiolb, Pos.TOP_CENTER);
@@ -353,7 +355,7 @@ public class KuukaudenJakauma extends Application {
 
         //etuusympyra
         etuusYmypyra.setFill(Color.CADETBLUE);
-        //stackpane toiminta
+        //stackpane ja asettelu
         Text etuusTeksti=new Text(palautaEtuus());
         etuusStackPane.getChildren().addAll(etuusYmypyra,etuuslb,etuusTeksti);
         StackPane.setAlignment(etuuslb, Pos.TOP_CENTER);
@@ -362,7 +364,7 @@ public class KuukaudenJakauma extends Application {
 
         //muut tulot ympyra
         muuTuloYmpyra.setFill(Color.AQUA);
-        //stackpane toiminta
+        //stackpane ja asettelu
         Text muuTuloTeksti=new Text(palautaMuuTulo());
         muutTulotStackPane.getChildren().addAll(muuTuloYmpyra,muuTulolb,muuTuloTeksti);
         StackPane.setAlignment(muuTulolb, Pos.TOP_CENTER);
@@ -376,7 +378,7 @@ public class KuukaudenJakauma extends Application {
 
         //vuokraympyra
         vuokraYmpyra.setFill(Color.FUCHSIA);
-        //stackpane
+        //stackpane ja asettelu
         Text vuokraTeksti=new Text(palautaVuokra());
         vuokraStackPane.getChildren().addAll(vuokraYmpyra,vuokralb,vuokraTeksti);
         StackPane.setAlignment(vuokralb, Pos.TOP_CENTER);
@@ -394,7 +396,7 @@ public class KuukaudenJakauma extends Application {
 
         //muumeno ympyra
         muuMenoYmpyra.setFill(Color.RED);
-        //stackpane toiminta
+        //stackpane ja asettelu
         Text muuMenoTeksti=new Text(palautaMuuMeno());
         muuMenoStackPane.getChildren().addAll(muuMenoYmpyra,menolb,muuMenoTeksti);
         StackPane.setAlignment(menolb, Pos.TOP_CENTER);

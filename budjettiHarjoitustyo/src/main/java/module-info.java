@@ -1,3 +1,6 @@
+/**
+ * moduuli sisaltaa ohjelmointi iii harjoitustyon kaikki tarvittavat tiedot
+ */
 module com.example.budjettiharjoitustyo {
     requires javafx.controls;
     requires javafx.fxml;
