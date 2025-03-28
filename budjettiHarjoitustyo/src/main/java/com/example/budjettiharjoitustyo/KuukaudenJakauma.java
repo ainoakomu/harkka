@@ -19,6 +19,7 @@ import javafx.stage.Stage;
  * Luokalla tehdään uusi graafinen nakyma, luetaan tiedostosta ja tuodaan olion tietueita esille
  * Luokan tietueissa ja metodissa vaihda, on kaytetty apuna JavaDocJunkie ja BroCode julkisia opetusvideoita
  * jotka ovat mainittu projektikertomuksessa
+ *
  * @author ainok
  */
 public class KuukaudenJakauma extends Application {
@@ -73,11 +74,11 @@ public class KuukaudenJakauma extends Application {
     /**
      * graafisen nakuman tulojen labeli
      */
-    private  final Label Tulot=new Label("Tulosi ovat:");
+    private  final Label tulot =new Label("Tulosi ovat:");
     /**
      * graafisen nakuman menojen labeli
      */
-    private  final Label Menot=new Label("Menosi ovat:");
+    private  final Label menot =new Label("Menosi ovat:");
     /**
      * etuuden ilmaisun label
      */
@@ -129,11 +130,11 @@ public class KuukaudenJakauma extends Application {
      */
     private  final StackPane etuusStackPane=new StackPane();
     /**
-     * menoympyroiden oma Node
+     * menoympyroiden muotoilu
      */
     private  final VBox menoLaatikko=new VBox();
     /**
-     * tuloympyroiden oma Node
+     * tuloympyroiden muotoilu
      */
     private  final VBox tuloLaatikko=new VBox();
     /**
@@ -148,6 +149,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * luodaan kaynnistys ja uusi stage-ilmentyma
+     *
      * @param primaryStage luodaan uusi paastage
      */
     public void start(Stage primaryStage)  {
@@ -155,6 +157,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * ohjeman paametodi ja kaynnistys
+     *
      * @param args tekee kaynnistyksen
      */
     public static void main(String[] args){
@@ -163,6 +166,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * luodaan alustaja, jolla on graafisen nakyman tietueita
+     *
      * @param naytto alustajalle annetaan stage
      * @param ruutu alustajalle annetaan scene
      * @param root alustajalle annetaan parent
@@ -175,6 +179,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * palauttaa lasketun tulon summan merkkijonona
+     *
      * @return tulon summa merkkijonona seka euron merkki
      */
     public String palautaTuloSumma(){
@@ -188,6 +193,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * palauttaa menojen summan merkkijonona
+     *
      * @return menojen summa merkkijonona seka euron merkki
      */
     public String palautaMenoSumma(){
@@ -201,6 +207,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * palauttaa luetun olion ansion merkkijonona
+     *
      * @return olion ansio merkkijonona seka euron merkki
      */
     public String palautaAnsio(){
@@ -214,6 +221,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * palauttaa luetun olion etuuden merkkijonona
+     *
      * @return luetun olion etuuden merkkijonona seka euron merkki
      */
     public String palautaEtuus(){
@@ -227,6 +235,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * palauttaa luetun olion muut tulot merkkijonona
+     *
      * @return luetun olion muut tulot merkkijonona seka euron merkki
      */
     public String palautaMuuTulo(){
@@ -240,6 +249,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * palauttaa luetun olion vuokran merkkijonona
+     *
      * @return luetun olion vuokran merkkijonona seka euron merkki
      */
     public String palautaVuokra(){
@@ -253,6 +263,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * palauttaa luetun olon ruokakulut merkkijonona
+     *
      * @return luetun olion ruokakulut merkkijonona seka euron merkki
      */
     public String palautaRuoka(){
@@ -266,6 +277,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * palauttaa luetun olion muut menot merkkijonona
+     *
      * @return luetun olion muut menot merkkijonona seka euron merkki
      */
     public String palautaMuuMeno(){
@@ -279,6 +291,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * palauttaa luettujen olion yhteisrahasummista palautteen, jossa budjetti on joko yli-tai alijaamainen tai tasan
+     *
      * @return merkkijonon, riippuen tilin balanssin jakaumasta
      */
     public String rahaJakauma(){
@@ -318,6 +331,7 @@ public class KuukaudenJakauma extends Application {
 
     /**
      * Asetetaan annettu scene-ilmentyma uudeksi sceneksi, jolloin ilmentyma vaihtuu
+     *
      * @param scene annetu scene, mihin grafiikka vaihdetaan
      */
     public void vaihda(Scene scene){
@@ -339,7 +353,7 @@ public class KuukaudenJakauma extends Application {
         kaikkiMenot.setText(palautaMenoSumma());
         jakaumaTeksti.setText(rahaJakauma());
         //ylalaatikon muotoilu
-        ylalaatikko.getChildren().addAll(paaTeksti,Tulot,kaikkiTulot,Menot,kaikkiMenot);
+        ylalaatikko.getChildren().addAll(paaTeksti, tulot,kaikkiTulot, menot,kaikkiMenot);
         ylalaatikko.setSpacing(10);
         ylalaatikko.setAlignment(Pos.CENTER);
 

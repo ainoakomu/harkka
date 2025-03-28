@@ -9,15 +9,15 @@ import java.io.*;
  */
 public class Menot implements Serializable {
     /**
-     * kasiteltava vuokran rahamaara desimaaleina
+     * vuokran rahamaara desimaaleina
      */
     private double vuokra;
     /**
-     * kasiteltava ruuan rahamaara desimaaleina
+     * ruuan rahamaara desimaaleina
      */
     private double ruoka;
     /**
-     * kasiteltava muiden menojen rahamaara desimaaleina
+     * muiden menojen rahamaara desimaaleina
      */
     private double muuMeno;
     /**
@@ -30,14 +30,15 @@ public class Menot implements Serializable {
     private double menoMuutosMaara;
 
     /**
-     * luokan parametriton alustaja
+     * luo parametrittoman alustajan
      */
     public Menot(){
 
     }
 
     /**
-     * alustaja, jolla on kolme menojen kenttaa
+     * alustaja, jolla on vuokra, ruokulut ja muut menot- kentat
+     *
      * @param vuokra vuokran maara desimaalilukuina
      * @param ruoka ruokaan meneva rahamaara desimaaleina
      * @param muutMeno muihin menoihin meneva rahamaara desimaaleina
@@ -51,6 +52,7 @@ public class Menot implements Serializable {
 
     /**
      * palauttaa vuokran maaran desimaaleina
+     *
      * @return vuokran desimaaliluku
      */
     public double getVuokra() {
@@ -59,6 +61,7 @@ public class Menot implements Serializable {
 
     /**
      * asettaa vuokran maaran
+     *
      * @param vuokra annettu desimaaliluku vuokralle
      */
     public void setVuokra(int vuokra) {
@@ -67,6 +70,7 @@ public class Menot implements Serializable {
 
     /**
      * palauttaa ruokaan menevan rahamaaran desimaaleina
+     *
      * @return rahasumma desimaaleina
      */
     public double getRuoka() {
@@ -75,6 +79,7 @@ public class Menot implements Serializable {
 
     /**
      * asettaa ruokaan menevan rahamaaran desimaaleina
+     *
      * @param ruoka annettu summa desimaaleina
      */
     public void setRuoka(double ruoka) {
@@ -83,6 +88,7 @@ public class Menot implements Serializable {
 
     /**
      * palauttaa muihuin menoihin menevan rahasumman desimaaleina
+     *
      * @return summan desimaalilukuna
      */
     public double getMuuMeno() {
@@ -91,6 +97,7 @@ public class Menot implements Serializable {
 
     /**
      * asettaa muihin menoihin menevan rahasumman desimaaleina
+     *
      * @param muuMeno annettu summa muihim menoihin desimaaleina
      */
     public void setMuuMeno(double muuMeno) {
@@ -99,6 +106,7 @@ public class Menot implements Serializable {
 
     /**
      * palauttaa menojen olemassaolon
+     *
      * @return totuusarvo onko menoja
      */
     public boolean getOnkoMenoja() {
@@ -107,6 +115,7 @@ public class Menot implements Serializable {
 
     /**
      * asettaa menojen olemassaoloarvon
+     *
      * @param onkoMenoja annettu totuusarvo menoista
      */
     public void setOnkoMenoja(boolean onkoMenoja) {
@@ -115,6 +124,7 @@ public class Menot implements Serializable {
 
     /**
      * palauttaa yhteenlaskettujen menojen maaran desimaaleina
+     *
      * @return summa menoista desimaaleina
      */
     public double getMenoMuutosMaara() {
@@ -123,6 +133,7 @@ public class Menot implements Serializable {
 
     /**
      * asettaa yhteenlaskettujen menojen maaran desimaaleina
+     *
      * @param menoMuutosMaara annettu desimaaliluku
      */
     public void setMenoMuutosMaara(double menoMuutosMaara) {
@@ -132,6 +143,7 @@ public class Menot implements Serializable {
     /**
      * kirjoitetaan Menot-luokan olion tietueet binaaritiedostoon.
      * virhetilanteessa kaytetaan pop-up ikkunoita
+     *
      * @param menoOlio olio jonka tiedot halutaan kirjoittaa
      */
     public void lueMenoTiedostoon(Object menoOlio){

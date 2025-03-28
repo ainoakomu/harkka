@@ -10,15 +10,15 @@ import java.io.*;
  */
 public class Tulot implements Serializable {
     /**
-     * luokassa kaytettava ansio desimaalilukuna
+     * kaytettava ansio desimaalilukuna
      */
     private  double ansio;
     /**
-     * luokassa kaytettava etuus desimaalilukuna
+     * kaytettava etuus desimaalilukuna
      */
     private double etuus;
     /**
-     * luokassa kaytettava muun tulon rahamaara desimaalilukuna
+     * kaytettava muun tulon rahamaara desimaalilukuna
      */
     private double muuTulos;
     /**
@@ -31,14 +31,15 @@ public class Tulot implements Serializable {
     private double muutosMaara;
 
     /**
-     * luokan parametriton alustaja
+     * luo luokan parametritttoman alustajan
      */
     public Tulot(){
 
     }
 
     /**
-     * luokalle luotava olio, jolla on kaikki raha-kentat
+     * alustaja oliolle, jolla on ansio, etuus ja muut tulot-kentat
+     *
      * @param ansio saatu ansio desimaalilukuna
      * @param etuus saatu etuus desimaalilukuna
      * @param muuTulo saatu muut tulot desimaalilukuna
@@ -51,6 +52,7 @@ public class Tulot implements Serializable {
 
     /**
      * palauttaa ansion maaran desimaalilukuna
+     *
      * @return ansion desimaaliluku
      */
     public double getAnsio() {
@@ -59,6 +61,7 @@ public class Tulot implements Serializable {
 
     /**
      * asettaa annetun ansion tietueeseen
+     *
      * @param ansio annettu desimaaliluku
      */
     public void setAnsio(double ansio) {
@@ -67,6 +70,7 @@ public class Tulot implements Serializable {
 
     /**
      * palauttaa etuuden maaran desimaalilukuna
+     *
      * @return etuuden desimaaliluku
      */
     public double getEtuus() {
@@ -75,6 +79,7 @@ public class Tulot implements Serializable {
 
     /**
      * asettaa etuuden desimaaliluvun tietueelle
+     *
      * @param etuus annettu desimaaliluku
      */
     public void setEtuus(double etuus) {
@@ -83,6 +88,7 @@ public class Tulot implements Serializable {
 
     /**
      * palauttaa mahdolliset muut tulot
+     *
      * @return muiden tulojen desimaaliluku
      */
     public double getMuuTulos() {
@@ -91,6 +97,7 @@ public class Tulot implements Serializable {
 
     /**
      * asettaa mahdolliset muut tulot tietueelle desimaalilukuisena
+     *
      * @param muuTulos annettu desimaaliluku
      */
     public void setMuuTulos(double muuTulos) {
@@ -99,6 +106,7 @@ public class Tulot implements Serializable {
 
     /**
      * asettaa arvoksi onko tuloja olemassa vai ei
+     *
      * @param onkoTuloja haluttu arvo tulojen olemassaolosta
      */
     public void setOnkoTuloja(boolean onkoTuloja) {
@@ -107,6 +115,7 @@ public class Tulot implements Serializable {
 
     /**
      * palauttaa onko tuloja olemassa vai ei
+     *
      * @return tulojen olemassaolo
      */
     public boolean getOnkoTuloja(){
@@ -115,6 +124,7 @@ public class Tulot implements Serializable {
 
     /**
      * palauttaa tulojen yhteenlasketun arvon desimaalilukuna
+     *
      * @return rahamaara desimaalilukuina
      */
     public double getMuutosMaara() {
@@ -123,6 +133,7 @@ public class Tulot implements Serializable {
 
     /**
      *asettaa kaikkien tulojen yhteenlasketunarvon desimaalilukuna
+     *
      * @param muutosMaara tulojen yhteenlaskettu arvo
      */
     public void setMuutosMaara(double muutosMaara) {
@@ -132,6 +143,7 @@ public class Tulot implements Serializable {
     /**
      * kirjoittaa annetun Tulot-objektin tiedot oliobinaaritiedostoon. Jos tiedostokirjoitus ei onnistu
      * antaa varoitusilmoituksen
+     *
      * @param tuloOlio Tulot-objektin jonka tietoja kirjoitetaan
      */
     public void lueTuloTiedostoon(Object tuloOlio){
